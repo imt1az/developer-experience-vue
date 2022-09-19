@@ -1,14 +1,24 @@
 <template>
   <!-- User -->
-  <div class="flex justify-center">
-    <div class="relative w-[900px] overflow-hidden mt-5">
+
+<div class="flex justify-center">
+
+
+     <div class="relative w-[900px] overflow-hidden mt-5">
       <div class="bg-blue-500 h-12 w-full pl-5 flex items-center rounded-lg">
-        <h1
-          class="text-lg font-semibold text-white"
-          @click="$emit('clickedOnTittle')"
-        >
-          <slot name="title"></slot>
-        </h1>
+    
+          <div>
+            <h1
+            class="text-lg font-semibold text-white"
+            @click="$emit('clickedOnTittle')"
+          >
+       
+              <slot class="" name="title"></slot>
+         
+            
+          </h1>
+          </div>
+       
       </div>
       <!-- Arrow Icon -->
       <button
@@ -32,20 +42,35 @@
       </button>
       <!-- Content -->
       <div
-        class="bg-white overflow-hidden transition-all duration-500 border-blue-900"
+        class="bg-white overflow-hidden transition-all duration-1000 border-blue-900"
         :class="{ 'max-h-[0]': !isOpen, 'max-h-screen': isOpen }"
       >
         <div class="p-4 min-h-screen">
           <!-- Content -->
           <slot />
+          
         </div>
       </div>
     </div>
+
+
+   
   </div>
+
+
+  
+   
 </template>
 
 <script setup>
+
 import { ref } from "vue";
 
 const isOpen = ref(false);
+function greet() {
+  console.log("World");
+}
+
+
+
 </script>

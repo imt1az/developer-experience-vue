@@ -1,12 +1,14 @@
 
 <template>
-<Layout>
+<Layout @clickedOnHome = "handleClickOnHome">
 <Collapseable
       @clickedOnTittle="handleClickOnTitle"
+    
       v-for="item in collapseableData"
-      :key="item.id"
-    >
+      :key="item.id" 
+    > 
       <template #title>{{ item.title }}</template>
+      
       
       <h1 class="text-3xl text-center font-bold mb-4">{{ item.title }}</h1>
       <p class="my-10" v-for="(paragraph, i) in item.content" :key="i">
@@ -27,6 +29,7 @@ const collapseableData = ref([
   {
     id: 1,
     title: "User",
+    toggle:true,
     content: [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis explicabo dicta voluptas neque repellat numquam, veritatis fugit quasi tenetur asperiores rerum? Id ipsum quidem quos quaerat inventore veniam eos recusandae.",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis explicabo dicta voluptas neque repellat numquam, veritatis fugit quasi tenetur asperiores rerum? Id ipsum quidem quos quaerat inventore veniam eos recusandae.",
@@ -37,6 +40,7 @@ const collapseableData = ref([
   {
     id: 2,
     title: "View",
+    toggle:true,
     content: [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis explicabo dicta voluptas neque repellat numquam, veritatis fugit quasi tenetur asperiores rerum? Id ipsum quidem quos quaerat inventore veniam eos recusandae.",
     ],
@@ -44,8 +48,15 @@ const collapseableData = ref([
 ]);
 
 function handleClickOnTitle() {
+
+  
   collapseableData.value = collapseableData.value.reverse();
 }
+
+function handleClickOnHome(){
+  console.log('Hello')
+}
+
 </script>
 
 
