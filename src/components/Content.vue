@@ -2,7 +2,7 @@
   <div class="bg-gray-200 min-h-screen">
     <!-- User -->
    <div class="flex justify-center">
-    <div class="relative w-[900px] overflow-hidden mt-5">
+    <div class="relative w-[1200px] overflow-hidden mt-5">
       <input
         type="checkbox"
         class="peer absolute top-0 right-3 w-6 h-12 z-50 cursor-pointer opacity-0 "
@@ -70,7 +70,7 @@
 
     <!-- View -->
    <div class="flex justify-center">
-    <div class="relative w-[900px] overflow-hidden mt-5">
+    <div class="relative w-[1200px] overflow-hidden mt-5">
       <input
         type="checkbox"
         class="peer absolute top-0 right-3 w-6 h-12 z-50 cursor-pointer opacity-0 "
