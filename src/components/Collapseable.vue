@@ -7,18 +7,22 @@
       :key="item.id"
       class="relative w-[80vw] overflow-hidden mt-5"
     >
-      <Transition name="toggle">
-        <div  @click="reverse(index)" >
-          <div class="bg-red-800 h-12 w-full pl-5 rounded-lg cursor-pointer">
-            <h1 class="text-2xl m-auto font-semibold text-white text-center cursor-pointer">
-              {{ item.title }}
-            </h1>
-          </div>
+      <div  class="">
+        <Transition name="toogle">
+        <div v-if="!item.toggle" @click="swap(index)"
+          class="bg-red-800 h-12 w-full pl-5 rounded-lg cursor-pointer transition-transform duration-1000 toggle"
+        >
+          <h1
+            class="text-2xl  font-semibold text-white text-center cursor-pointer"
+          >
+            {{ item.title }}
+          </h1>
         </div>
-      </Transition>
+        </Transition>
+      </div>
 
       <!-- Arrow Icon -->
-      <button
+      <div
         v-if="item.icon"
         @click="activeBody(index)"
         class="absolute top-3 right-3 transition-transform duration-500 rotate-0 text-white"
@@ -30,7 +34,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6"
+          class="w-8 h-8"
         >
           <path
             stroke-linecap="round"
@@ -38,9 +42,9 @@
             d="M19.5 8.25l-7.5 7.5-7.5-7.5"
           />
         </svg>
-      </button>
+      </div>
       <!-- Content -->
-      <Transition>
+      <Transition name="fade">
         <div
           class="bg-white overflow-hidden border-blue-900 min-h-screen"
           v-if="item.active"
@@ -51,7 +55,11 @@
             <h1 class="text-5xl font-semibold text-black text-center">
               {{ item.title }}
             </h1>
-            <p class="my-10 font-semibold" v-for="(paragraph, i) in item.content" :key="i">
+            <p
+              class="m-20 p-20 font-semibold"
+              v-for="(paragraph, i) in item.content"
+              :key="i"
+            >
               {{ paragraph }}
             </p>
           </div>
@@ -68,7 +76,7 @@ const collapseableData = ref([
   {
     id: 1,
     title: "User",
-    toggle: true,
+    toggle: false,
     active: false,
     icon: true,
     content: [
@@ -81,7 +89,7 @@ const collapseableData = ref([
   {
     id: 2,
     title: "View",
-    toggle: true,
+    toggle: false,
     active: true,
     icon: false,
     content: [
@@ -101,7 +109,7 @@ function activeBody(index) {
   // });
 }
 
-function reverse(index) {
+function swap(index) {
   console.log("reverse");
   if (collapseableData.value[1].active) {
     collapseableData.value[1].active = !collapseableData.value[1].active;
@@ -120,7 +128,29 @@ function reverse(index) {
 }
 </script>
 
-<style>
+<style scoped>
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.toogle-enter-from{
+  transition: all 3s linear;
+}
+.toogle-enter-to{
+  transition: all 3s linear;
+}
+.toogle-leave-to{
+  transform: translateY(100px);
+}
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
@@ -130,6 +160,5 @@ function reverse(index) {
 .v-leave-to {
   opacity: 0;
 }
-
 
 </style>

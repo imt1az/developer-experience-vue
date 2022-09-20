@@ -44,16 +44,18 @@
       <!-- Header -->
       <Header />
 
-      <main>
+   <main>
         <slot />
       </main>
+
+     
     </div>
   </div>
 </template>
 
 <script setup>
 import Header from "./Header.vue";
-import Content from "./Content.vue";
+
 import { ref } from "vue";
 
 let isOpen = ref(true);
