@@ -13,8 +13,10 @@
     "@heroicons/vue": "^2.0.11",
     "@vue-hero-icons/outline": "^1.7.2",
     "@vue-hero-icons/solid": "^1.7.2",
+    "daisyui": "^2.29.0",
     "flowbite": "^1.5.3",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-sidebar-menu": "^5.2.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",

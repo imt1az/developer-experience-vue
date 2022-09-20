@@ -1,31 +1,30 @@
 <template>
   <!-- User -->
 
-<div class="flex justify-center">
-
-
-     <div class="relative w-[900px] overflow-hidden mt-5">
-      <div class="bg-blue-500 h-12 w-full pl-5 flex items-center rounded-lg">
-    
-          <div>
-            <h1
-            class="text-lg font-semibold text-white"
-            @click="$emit('clickedOnTittle')"
-          >
-       
-              <slot class="" name="title"></slot>
-         
-            
-          </h1>
+  <div class="flex flex-col items-center">
+    <div
+      v-for="(item, index) in collapseableData"
+      :key="item.id"
+      class="relative w-[80vw] overflow-hidden mt-5"
+    >
+      <Transition name="toggle">
+        <div  @click="reverse(index)" >
+          <div class="bg-red-800 h-12 w-full pl-5 rounded-lg cursor-pointer">
+            <h1 class="text-2xl m-auto font-semibold text-white text-center cursor-pointer">
+              {{ item.title }}
+            </h1>
           </div>
-       
-      </div>
+        </div>
+      </Transition>
+
       <!-- Arrow Icon -->
       <button
-        @click="isOpen = !isOpen"
+        v-if="item.icon"
+        @click="activeBody(index)"
         class="absolute top-3 right-3 transition-transform duration-500 rotate-0 text-white"
       >
         <svg
+          v-if="item.icon"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -41,36 +40,96 @@
         </svg>
       </button>
       <!-- Content -->
-      <div
-        class="bg-white overflow-hidden transition-all duration-1000 border-blue-900"
-        :class="{ 'max-h-[0]': !isOpen, 'max-h-screen': isOpen }"
-      >
-        <div class="p-4 min-h-screen">
-          <!-- Content -->
-          <slot />
-          
+      <Transition>
+        <div
+          class="bg-white overflow-hidden border-blue-900 min-h-screen"
+          v-if="item.active"
+        >
+          <div class="p-4 min-h-screen">
+            <!-- Content -->
+            <!-- <slot /> -->
+            <h1 class="text-5xl font-semibold text-black text-center">
+              {{ item.title }}
+            </h1>
+            <p class="my-10 font-semibold" v-for="(paragraph, i) in item.content" :key="i">
+              {{ paragraph }}
+            </p>
+          </div>
         </div>
-      </div>
+      </Transition>
     </div>
-
-
-   
   </div>
-
-
-  
-   
 </template>
 
 <script setup>
-
 import { ref } from "vue";
 
-const isOpen = ref(false);
-function greet() {
-  console.log("World");
+const collapseableData = ref([
+  {
+    id: 1,
+    title: "User",
+    toggle: true,
+    active: false,
+    icon: true,
+    content: [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis explicabo dicta voluptas neque repellat numquam, veritatis fugit quasi tenetur asperiores rerum? Id ipsum quidem quos quaerat inventore veniam eos recusandae.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis explicabo dicta voluptas neque repellat numquam, veritatis fugit quasi tenetur asperiores rerum? Id ipsum quidem quos quaerat inventore veniam eos recusandae.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis explicabo dicta voluptas neque repellat numquam, veritatis fugit quasi tenetur asperiores rerum? Id ipsum quidem quos quaerat inventore veniam eos recusandae.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis explicabo dicta voluptas neque repellat numquam, veritatis fugit quasi tenetur asperiores rerum? Id ipsum quidem quos quaerat inventore veniam eos recusandae.",
+    ],
+  },
+  {
+    id: 2,
+    title: "View",
+    toggle: true,
+    active: true,
+    icon: false,
+    content: [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis explicabo dicta voluptas neque repellat numquam, veritatis fugit quasi tenetur asperiores rerum? Id ipsum quidem quos quaerat inventore veniam eos recusandae.",
+    ],
+  },
+]);
+
+function activeBody(index) {
+  collapseableData.value[1].active = !this.collapseableData[1].active;
+  collapseableData.value[1].icon = !collapseableData.value[1].icon;
+  console.log(this.collapseableData[index].active);
+  // collapseableData.value.forEach((item, id) => {
+  //   if (id !== index) {
+  //     item.active = false;
+  //   }
+  // });
+}
+
+function reverse(index) {
+  console.log("reverse");
+  if (collapseableData.value[1].active) {
+    collapseableData.value[1].active = !collapseableData.value[1].active;
+  }
+  collapseableData.value[index].toggle = !collapseableData.value[index].toggle;
+
+  // Icon Active When Reverse
+  collapseableData.value[0].icon = true;
+  collapseableData.value[1].icon = true;
+  console.log(collapseableData.value[index].toggle);
+  setTimeout(() => {
+    collapseableData.value[1].toggle = false;
+    collapseableData.value[0].toggle = false;
+    collapseableData.value = collapseableData.value.reverse();
+  }, 500);
+}
+</script>
+
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 
 
-
-</script>
+</style>
