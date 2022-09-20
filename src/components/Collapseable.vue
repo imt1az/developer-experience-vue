@@ -99,9 +99,9 @@ const collapseableData = ref([
 ]);
 
 function activeBody(index) {
-  collapseableData.value[1].active = !this.collapseableData[1].active;
+  collapseableData.value[1].active = !collapseableData.value[1].active;
   collapseableData.value[1].icon = !collapseableData.value[1].icon;
-  console.log(this.collapseableData[index].active);
+  
   // collapseableData.value.forEach((item, id) => {
   //   if (id !== index) {
   //     item.active = false;
