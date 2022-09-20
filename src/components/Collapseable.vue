@@ -22,7 +22,7 @@
       </div>
 
       <!-- Arrow Icon -->
-      <div
+      <button
         v-if="item.icon"
         @click="activeBody(index)"
         class="absolute top-3 right-3 transition-transform duration-500 rotate-0 text-white"
@@ -42,7 +42,7 @@
             d="M19.5 8.25l-7.5 7.5-7.5-7.5"
           />
         </svg>
-      </div>
+      </button>
       <!-- Content -->
       <Transition name="fade">
         <div
