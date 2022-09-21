@@ -1,8 +1,8 @@
 <template>
-  <div class="relative flex min-h-screen bg-gray-700">
+  <div class="relative flex min-h-screen  bg-gray-700">
     <!-- Side Bar -->
     <div class="bg-gray-900 text-cyan-100">
-      <div class="flex justify-center items-center mt-14 transition-all duration-1000" :class="{'w-72':isOpen,'w-16':!isOpen}">
+      <div class="flex justify-center items-center mt-14 transition-all duration-1000" :class="{'md:w-72':isOpen,'w-16':!isOpen}">
         <svg  
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

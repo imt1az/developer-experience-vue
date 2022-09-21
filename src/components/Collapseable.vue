@@ -5,12 +5,12 @@
     <div
       v-for="(item, index) in collapseableData"
       :key="item.id"
-      class="relative w-[80vw] overflow-hidden mt-5"
+      class="relative md:w-[80vw] w-full overflow-hidden mt-5"
     >
       <div  class="">
         <Transition name="toogle">
         <div v-if="!item.toggle" @click="swap(index)"
-          class="bg-red-800 h-12 w-full pl-5 rounded-lg cursor-pointer transition-transform duration-1000 toggle"
+          class="bg-red-800 h-12 md:w-full md:pl-5 rounded-lg cursor-pointer transition-transform duration-1000 toggle"
         >
           <h1
             class="text-2xl  font-semibold text-white text-center cursor-pointer"
@@ -46,7 +46,7 @@
       <!-- Content -->
       <Transition name="fade">
         <div
-          class="bg-white overflow-hidden border-blue-900 min-h-screen"
+          class="bg-white overflow-hidden border-blue-900 max-h-screen"
           v-if="item.active"
         >
           <div class="p-4 min-h-screen">
@@ -56,7 +56,7 @@
               {{ item.title }}
             </h1>
             <p
-              class="m-20 p-20 font-semibold"
+              class="md:m-20 md:p-20 overflow-hidden font-semibold"
               v-for="(paragraph, i) in item.content"
               :key="i"
             >
